@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f6f1"><title>GlucoCare | Health Review</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+<a class="brand" href="/"><span class="brand-mark"><i></i><i></i><i></i></span><span>gluco<span class="brand-soft">care</span></span></a>
+<div class="side-label">YOUR SPACE</div>
+<nav><a class="nav active" href="#overview"><span>◫</span> Overview</a><a class="nav" href="#assessment"><span>＋</span> New assessment</a><a class="nav" href="#about"><span>ⓘ</span> About this tool</a></nav>
+<div class="sidebar-note"><div class="note-icon">♡</div><b>Your health, in context.</b><p>A small step toward a more informed conversation with your care team.</p></div>
+<div class="side-footer"><span class="dot"></span> Private session <span class="lock">⌑</span></div>
+</aside>
+<main class="main" id="overview">
+<header class="topbar"><div class="crumb">Workspace <span>/</span> <b>Overview</b></div><div class="top-right"><span class="session"><span class="dot"></span> Session-only assessment</span><span class="avatar">GC</span></div></header>
+<section class="hero">
+<div><div class="eyebrow"><span></span> PERSONAL HEALTH REVIEW</div><h1>A clearer picture.<br><em>One step at a time.</em></h1><p class="intro">Enter a few health measurements to see what your trained model indicates. Use the result as a conversation starter—not a diagnosis.</p></div>
+<div class="hero-art" aria-hidden="true"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="plus">+</div><div class="pulse"><i></i><i></i><i></i><i></i><i></i></div><div class="art-tag">WELLNESS<br><b>CHECK-IN</b></div></div>
+</section>
+<section class="stats">
+<div class="stat"><span class="stat-icon green">⌁</span><div><small>Assessment type</small><b>Diabetes risk screening</b><span>Machine-learning assisted</span></div></div>
+<div class="stat"><span class="stat-icon sand">▦</span><div><small>Measurements</small><b>5 health indicators</b><span>Based on your model inputs</span></div></div>
+<div class="stat"><span class="stat-icon lilac">♡</span><div><small>Privacy</small><b>No history saved here</b><span>This interface stores no records</span></div></div>
+</section>
+<section class="workspace" id="assessment">
+<div class="form-card">
+<div class="card-head"><div><small class="kicker">01 / YOUR MEASUREMENTS</small><h2>Let's check in</h2><p>Use values from your report or healthcare provider.</p></div><span class="required"><b>*</b> Required fields</span></div>
+<form id="assessment-form">
+<div class="fields">
+<label>Glucose <span class="unit">mg/dL</span><input name="Glucose" type="number" min="0" max="700" step="any" placeholder="e.g. 110" required><small>Blood glucose measurement</small></label>
+<label>Blood pressure <span class="unit">mmHg</span><input name="BloodPressure" type="number" min="0" max="300" step="any" placeholder="e.g. 72" required><small>Diastolic blood pressure value</small></label>
+<label>Insulin <span class="unit">µU/mL</span><input name="Insulin" type="number" min="0" max="10000" step="any" placeholder="e.g. 80" required><small>Insulin measurement, if available</small></label>
+<label>Body mass index <span class="unit">BMI</span><input name="BMI" type="number" min="0" max="150" step="any" placeholder="e.g. 28.4" required><small>BMI calculated from height and weight</small></label>
+<label class="wide">Age <span class="unit">years</span><input name="Age" type="number" min="1" max="120" step="1" placeholder="e.g. 35" required><small>Age in completed years</small></label>
+</div>
+<div class="actions"><button class="primary" id="submit-button" type="submit"><span>Review assessment</span><b>↗</b></button><button class="quiet" id="reset-button" type="button">Clear fields</button></div>
+<p class="footnote"><span>⌑</span> Your entries are sent to the prediction API to calculate this result. This demo does not intentionally save assessment history.</p>
+</form>
+</div>
+<aside class="result-card">
+<div class="result-head"><div><small class="kicker">02 / YOUR SUMMARY</small><h2>Assessment result</h2></div><span class="status" id="result-status">Awaiting input</span></div>
+<div class="result-art"><div class="ring r1"></div><div class="ring r2"></div><div class="heart" id="heart">♡</div><span class="spark">✳</span></div>
+<h3 id="result-title">Your result will appear here</h3><p class="result-copy" id="result-copy">Complete the five fields and run the assessment to see your model's output.</p>
+<div class="probability" id="probability-wrap" hidden><div><span>Model-estimated probability</span><b id="probability-value">—</b></div><div class="bar"><span id="probability-fill"></span></div><small>Shown only when your model supports probability estimates.</small></div>
+<div class="divider"></div><div class="meaning"><span>✓</span><div><b>What this means</b><p id="result-meaning">The model will classify values using patterns learned during training.</p></div></div>
+<div class="medical-note"><b>i</b><p>This tool cannot diagnose diabetes or replace professional medical advice. Discuss health concerns and test results with a qualified clinician.</p></div>
+</aside>
+</section>
+<section class="about" id="about"><div class="about-icon">✳</div><div class="about-copy"><small class="kicker">A NOTE ON THIS TOOL</small><h2>Technology can inform the conversation.</h2><p>This page connects to your trained machine-learning model through a Flask API. It uses glucose, blood pressure, insulin, BMI and age in the same order as your training features. Model performance depends on the quality of the training data and evaluation.</p></div><div class="api" id="api-indicator"><span class="dot" id="api-dot"></span><span id="api-status">Checking model connection…</span></div></section>
+<footer><b>GLUCOCARE <span>/</span> HEALTH REVIEW DEMO</b><span>Built for informed conversations, not diagnosis.</span></footer>
+</main>
+</div><div class="toast" id="toast" role="status"></div>
+</body></html>
